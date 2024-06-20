@@ -353,7 +353,7 @@ class AcImpute(BaseEstimator):
 
             if np.isnan(nan_positions).any():
                 print("nan_positions 中包含 NaN，需要处理")
-        with _logger.task("重缩放"):
+        with _logger.task("rescale"):
             # 归一化后的重缩放
             max_values = np.max(data_imputed_end, axis=0)
             percentiles = np.percentile(data_imputed_pre, 99, axis=0)
