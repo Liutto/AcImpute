@@ -19,3 +19,4 @@ AcImpute_operator = AcImpute.AcImpute()
 X_AcImpute = AcImpute_operator.fit_transform(X)
 print("--- %s seconds ---" % (time.time() - start_time))
 pd.DataFrame.to_csv(X_AcImpute.transpose(), "D：\datasets\Usoskin_silver\AcImpute.csv")
+'''
