@@ -3,7 +3,8 @@
  An unsupervised method that enhances imputation accuracy by constraining the smoothing weights among cells for genes with different expression levels
 
 ## Quick start
-'''
+'''python
+
 new_path = r'D:\AcImpute'
 sys.path.insert(0, new_path)
 import AcImpute
