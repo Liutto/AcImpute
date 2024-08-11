@@ -34,7 +34,6 @@ result <- datarate %>%
   ) %>%
   distinct(group_type, row_means_sorted, .keep_all = TRUE)
 result<-data.frame(result[,1:3])
-result$group_type <- as.factor(result$group_type)
 # # 创建折线图
 # p<-ggplot(result, aes(x = row_means_sorted, y = Mean_zero_proportion, color = group_type, group = group_type)) +
 #   geom_line() +
@@ -43,32 +42,3 @@ result$group_type <- as.factor(result$group_type)
 #   scale_color_brewer(palette = "Paired") +
 #   theme_minimal()
 # print(p)
-
-datarate <- matrix(nrow = 0, ncol = 3)
-for (i in unique(label)) {
-  type_col = which(label==i)
-  gene_exp = rawdata[,-1]
-  gene_exp = gene_exp[,type_col]
-  row_sum <- rowSums(gene_exp)
-  zero_proportion  <- rowSums(gene_exp == 0)/ ncol(gene_exp)
-  sorted_indices <- order(row_sum)
-  row_means_sorted<-sort(row_sum)
-  zero_proportion_sorted<-zero_proportion[sorted_indices]
-  group_type<-rep(i,length(row_sum))
-  merged_data <-cbind(group_type,row_means_sorted,zero_proportion_sorted)
-  datarate<-rbind(datarate,merged_data)
-  
-}
-library(dplyr)
-datarate <- data.frame(datarate)
-result <- datarate %>%
-  group_by(group_type, row_means_sorted) %>%
-  summarize(
-    Mean_zero_proportion = mean(zero_proportion_sorted),
-    Max_zero_proportion = max(zero_proportion_sorted),
-    Min_zero_proportion = min(zero_proportion_sorted),
-    countn = n()
-  ) %>%
-  distinct(group_type, row_means_sorted, .keep_all = TRUE)
-write.csv(result,"E:/学习箱/论文/2/output_plot_zeisel_zero_proportion.csv")
-result<-data.frame(result[,1:3])
