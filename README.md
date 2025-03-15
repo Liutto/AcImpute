@@ -20,3 +20,5 @@ X_AcImpute = AcImpute_operator.fit_transform(X)
 print("--- %s seconds ---" % (time.time() - start_time))
 pd.DataFrame.to_csv(X_AcImpute.transpose(), "D：\datasets\Usoskin_silver\AcImpute.csv")
 
+## dataset
+Location of experimental results for correlation analysis of the Ziegenhain dataset in AcImpute: https://figshare.com/articles/dataset/Ziegenhain_data/28600136
